@@ -1,4 +1,6 @@
-<!--https://github.com/javascriptacademy-stash/digital-rain-->
+<!-- https://github.com/javascriptacademy-stash/digital-rain -->
+<!-- plus extras -->
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -20,6 +22,20 @@
           height: 100%;
       }
     </style>
+
+    <script>
+
+          var colors = ["#FFBA0A","#00F59A","#3FBFE3","#FF6376"];
+          var newColor;
+          var color;
+
+          function swapColors(){
+            newColor = Math.floor(Math.random() * 4);
+            color = colors[newColor];
+            return color;
+          }
+
+    </script>
 
 </head>
 
@@ -61,7 +77,18 @@
     	for(let i = 0; i < rainDrops.length; i++)
     	{
     		const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
-    		context.fillText(text, i*fontSize, rainDrops[i]*fontSize);
+
+        if(text == "T" || text == "W" || text == "I" || text == "C" || text == "H"){
+          context.fillStyle = swapColors();
+        	context.font = 'bold ' + fontSize + 'px monospace';
+        }
+
+
+        context.fillText(text, i*fontSize, rainDrops[i]*fontSize);
+
+        context.fillStyle = '#BFABFF';
+      	context.font = fontSize + 'px monospace';
+
 
     		if(rainDrops[i]*fontSize > canvas.height && Math.random() > 0.975){
     			rainDrops[i] = 0;
