@@ -1,0 +1,109 @@
+<html>
+<head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script src="jquery.cycle2.min.js"></script>
+<!-- https://jquery.malsup.com/cycle2/download/ -->
+
+<script>
+var a;
+var str;
+function imageChanger(){
+  e = Math.random()*1;
+  str = "https://source.unsplash.com/random/1600/" + "?nature?" + e;
+}
+</script>
+
+<style>
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.cycle-slideshow {
+  overflow: hidden;
+}
+
+.cycle-slideshow > div {
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  transition: transform 6.5s linear;
+}
+
+#slide-1 {
+  background-image: url("https://source.unsplash.com/random/900x700/?nature?a");
+}
+
+#slide-2 {
+  background-image: url("https://source.unsplash.com/random/900x700/?nature?b");
+}
+
+#slide-3 {
+  background-image: url("https://source.unsplash.com/random/900x700/?nature?c");
+}
+
+#slide-4 {
+  background-image: url("https://source.unsplash.com/random/900x700/?nature?d");
+}
+
+.cycle-slideshow .scale {
+  transform: scale(1.1);
+}
+.cycle-slideshow .fx1 {
+  transform-origin: bottom left;
+}
+.cycle-slideshow .fx2 {
+  transform-origin: top left;
+}
+.cycle-slideshow .fx3 {
+  transform-origin: top right;
+}
+.cycle-slideshow .fx4 {
+  transform-origin: bottom right;
+}
+</style>
+
+<script>
+var new_effect;
+var old_effect;
+
+function random_effect() {
+	return Math.floor(Math.random() * 4) + 1;
+}
+
+$(function() {
+  new_effect = random_effect();
+  $('#slide-1').addClass('scale');
+  $('#slide-1').addClass('fx' + new_effect);
+
+	$('.cycle-slideshow').on('cycle-before', function(event, optionHash, outgoingSlideEl, incomingSlideEl, forwardFlag) {
+    old_effect = new_effect;
+		new_effect = random_effect();
+		$(incomingSlideEl).addClass('scale');
+		$(incomingSlideEl).addClass('fx' + new_effect);
+	});
+
+	$('.cycle-slideshow').on('cycle-after', function(event, optionHash, outgoingSlideEl, incomingSlideEl, forwardFlag) {
+
+    //extra code to change image
+    imageChanger()
+    document.getElementById(outgoingSlideEl.id).style.backgroundImage = 'url(' + str + ')';
+
+    $(outgoingSlideEl).removeClass('scale');
+		$(outgoingSlideEl).removeClass('fx' + old_effect);
+	});
+});
+</script>
+
+</head>
+<body>
+<div class="cycle-slideshow" data-cycle-slides="> div">
+  <div id="slide-1"></div>
+  <div id="slide-2"></div>
+  <div id="slide-3"></div>
+  <div id="slide-4"></div>
+</div>
+</body>
+</html>
