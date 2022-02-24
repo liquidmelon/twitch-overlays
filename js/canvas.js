@@ -41,7 +41,7 @@ class Particle {
     this.radius = radius
     this.color = color
     this.mass = 1
-    this.opacity = 0.2
+    this.opacity = 0.0
     this.isCollided = false
   }
 
@@ -79,22 +79,22 @@ class Particle {
 
                 if(this.isCollided){
                   this.isCollided = false
-                  this.opacity = 0.2
+                  this.opacity = 0.0
                 }
                 else{
                   this.isCollided = true
-                  this.opacity = 0.6
+                  this.opacity = 1.0
                 }
 
                 particles[i].isCollided ? false : true
 
                 if(particles[i].isCollided){
                   particles[i].isCollided = false
-                  particles[i].opacity = 0.2
+                  particles[i].opacity = 0.0
                 }
                 else{
                   particles[i].isCollided = true
-                  particles[i].opacity = 0.6
+                  particles[i].opacity = 1.0
                 }
           }
 
