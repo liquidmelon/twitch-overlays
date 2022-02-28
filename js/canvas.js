@@ -210,7 +210,8 @@ class Particle {
 // Implementation  /////////////////////////////////////////////////////////
 let particles
 let twitchicon
-let myPattern
+let myPatternImage
+let thePattern
 
 function init() {
 
@@ -255,11 +256,11 @@ function init() {
   myCircle = new Circle(640,360,150,'black');
 
   //create pattern
-  myPattern = new Image();
-  myPattern.onload = function() {
-     pattern = c.createPattern(myPattern, 'repeat');
+  myPatternImage = new Image();
+  myPatternImage.onload = function() {
+     thePattern = c.createPattern(myPatternImage, 'repeat');
   };
-  myPattern.src = 'pattern-1.png';
+  myPatternImage.src = patterndata;
 
 }
 
@@ -310,7 +311,7 @@ function animate() {
   //draw patttern
   c.globalCompositeOperation = "destination-over";
   c.rect(0, 0, 1280, 720);
-  c.fillStyle = pattern;
+  c.fillStyle = thePattern;
   c.fill();
   c.globalCompositeOperation = "source-over";
 
