@@ -302,10 +302,10 @@ function animate() {
   c.drawImage(twitchicon, 616, 240, 48, 56);
 
   //draw words
-  c.font = 'bold 24px Trebuchet MS';
+  /*c.font = 'bold 24px Trebuchet MS';
   c.textAlign = 'right';
   c.fillText('INTERMISSION', 664, 367);
-  c.fillText('5:00', 664, 389);
+  c.fillText('5:00', 664, 389);*/
 
   //draw patttern
   c.globalCompositeOperation = "destination-over";
